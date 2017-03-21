@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      IonReddit
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div center>
+		<ion-item>
+			<ion-label fixed>Category</ion-label>
+			<ion-select (ionChange)="changeCategory()" [(ngModel)] = "sort" name="sort">
+				<ion-option value="new">New</ion-option>
+				<ion-option value="top">Top</ion-option>
+				<ion-option value="hot">Hot</ion-option>
+				<ion-option value="controversial">Controversial</ion-option>
+			</ion-select>
+
+			<ion-select (ionChange)="changeCategory()" [(ngModel)] = "category" name="category">
+				<ion-option value="sports">Sports</ion-option>
+				<ion-option value="food">Food</ion-option>
+				<ion-option value="news">News</ion-option>
+				<ion-option value="music">Music</ion-option>
+				<ion-option value="funny">Funny</ion-option>
+				<ion-option value="gaming">Gaming</ion-option>
+				<ion-option value="art">Art</ion-option>
+			</ion-select>
+		</ion-item>
+	</div>
+	<ion-list>
+		<ion-item *ngFor = "let item of items" (click)="viewItem(item.data)" text-wrap>
+			<ion-thumbnail *ngIf="item.data.thumbnail" item-left>
+				<img src="{{item.data.thumbnail}}">
+			</ion-thumbnail>
+			<h2>{{item.data.title}}</h2>
+			<p>
+				<ion-icon name="thumbs-up">&nbsp;{{item.data.score}}</ion-icon> &nbsp;&nbsp;
+				<ion-icon name="chatboxes">&nbsp;&nbsp;{{item.data.num_comments}}</ion-icon>
+			</p>
+		</ion-item>
+	</ion-list>
+</ion-content>
